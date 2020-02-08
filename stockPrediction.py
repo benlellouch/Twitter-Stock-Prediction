@@ -6,6 +6,7 @@
 	Produce values of the predicted stock price based on the sentiment analysis
 """
 import datetime
+import math
 
 def stonks_bash(data_set) :
 	if forecast_function(data_set) > 0:
@@ -22,11 +23,11 @@ def stonks_bash(data_set) :
 def forecast_function(data_set) :
 	positive_data_sum = 0
 	negative_data_sum = 0
-	for positive_data in positive_data(data_set) :
-		positive_data_sum = positive_data_sum + (time(positive_data)*SSM(positive_data(data_set),positive_data))
+	for positive_data_value in positive_data(data_set) :
+		positive_data_sum = positive_data_sum + (time(positive_data_value)*SSM(positive_data(data_set),positive_data_value))
 
-	for negative_data in negative_data(data_set) :
-		negative_data_sum = negative_data_sum + (time(negative_data)*SSM(negative_data(data_set),negative_data))
+	for negative_data_value in negative_data(data_set) :
+		negative_data_sum = negative_data_sum + (time(negative_data_value)*SSM(negative_data(data_set),negative_data_value))
 		
 	return positive_data_sum - negative_data_sum
 
@@ -66,25 +67,69 @@ def sum_of_x_squared(data_set) :
 		x_squared_sum = x_squared_sum + (tweet_time[0])**2
 	return x_squared_sum
 
+
 def mu_value(data_point_1,data_point_2) :
-	return 0 if (1-abs(data_point_1 - data_point_2)) < 0 else 1-abs(data_point_1 - data_point_2)
-	
+	return 0 if (1-abs(data_point_1[0] - data_point_2[0])) < 0 else 1-abs(data_point_1[0] - data_point_2[0])
+
+"""
+	fuck python - haskell is better (basically the haskell take function)
+"""	
+def take(size, data_set) :
+	reverse_list = data_set[::-1]
+	new_list = reverse_list[size:]
+	return new_list[::-1]
 
 
 """
 	System Similarity Model 
+	data_set_1 has a cardinality of m, data_set_2 has a cardinality of n
 """
 def SSM(data_set_1, data_set_2) :
 	p = len(data_set_1) if len(data_set_1) < len(data_set_2) else len(data_set_2)
-	x_sum = sqrt(sum_of_x_squared(data_set_1))
-	
+
+	#dealing with the square root of the summation of x^2 values
+	x_sum = math.sqrt(sum_of_x_squared(data_set_1))
+
+	data_set_1_up_to_p = take((p-1), data_set_1)
+	data_set_2_up_to_p = take((p-1), data_set_2)
+
+	#dealing with the summation of x^2_i * mu_i from 1 to p
+	x_squared_with_mu_sum = 0
+	for set_1_values in data_set_1_up_to_p :
+		for set_2_values in data_set_2_up_to_p :
+			x_squared_with_mu_sum = x_squared_with_mu_sum + (mu_value(set_1_values[0],set_2_values[0]) * (set_1_values[0])**2)
+
+
+
+	#dealing with the summation of y^2 from p+1 to n
+	y_squared_up_to_p_sum = 0
+	y_squared_sum = 0
+
+	#y squared from 1 to n
+	for data_set_2_values in data_set_2 :
+		y_squared_sum = y_squared_sum + (data_set_2_values[0])**2
+
+	for data_set_2_up_to_p_values in data_set_2_up_to_p :
+		y_squared_up_to_p_sum = y_squared_up_to_p_sum + (data_set_2_up_to_p_values[0])**2
+
+	y_squared_from_p_to_n = y_squared_sum - y_squared_up_to_p_sum
+
+	return x_squared_with_mu_sum / (x_sum * math.sqrt(x_squared_with_mu_sum + y_squared_from_p_to_n))
+
 	
 		
 		
 #Testing Area
 data_set = [(0.5413, datetime.datetime(2020, 2, 6, 16, 7, 46)), (-0.4939, datetime.datetime(2020, 2, 3, 16, 7, 43)), (0.8832, datetime.datetime(2020, 2, 8, 16, 7, 43)), (-0.34, datetime.datetime(2020, 2, 8, 16, 7, 42)), (0.7034, datetime.datetime(2020, 2, 8, 16, 7, 41)), (-0.0258, datetime.datetime(2020, 2, 8, 16, 7, 41)), (-0.1027, datetime.datetime(2020, 2, 8, 16, 7, 41)), (0.4588, datetime.datetime(2020, 2, 8, 16, 7, 41)), (0.4019, datetime.datetime(2020, 2, 8, 16, 7, 40))] 
-for data_set_point in data_set :
-	print(time(data_set_point))
+data_set_1 = [(0.6369, datetime.datetime(2020, 2, 8, 16, 8, 10)), (0.2023, datetime.datetime(2020, 2, 8, 16, 8, 10)), (0.34, datetime.datetime(2020, 2, 8, 16, 8, 9)), (0.5106, datetime.datetime(2020, 2, 8, 16, 8, 9))]
 #print(negative_data(data_set))
-print(sum_of_x_squared(data_set))
+#print(sum_of_x_squared(data_set))
+positive_data_set = positive_data(data_set)
+negative_data_set = negative_data(data_set)
+
+print(SSM(data_set,positive_data_set))
+print(SSM(positive_data_set,data_set))
+print(SSM(data_set,data_set_1))
+print(mu_value((0.5413, datetime.datetime(2020, 2, 6, 16, 7, 46)),(0.2023, datetime.datetime(2020, 2, 8, 16, 8, 10))))
+
 
