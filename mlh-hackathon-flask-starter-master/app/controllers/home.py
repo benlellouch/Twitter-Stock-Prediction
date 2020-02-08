@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from flask import Blueprint, render_template, jsonify, request
 from yahoo_fin import stock_info as sf
+import json 
+import os
 
 
 blueprint = Blueprint('home', __name__)
@@ -20,10 +22,21 @@ def is_positive(score):
 @blueprint.route('/', methods=['GET', 'POST'])
 def index():
 	# if request.method == 'GET':
-	# 	pass
+	# 	show = False
+
 	# if request.method == 'POST':
-	# 	# get the form details
+	# 	show = True
+
+	company_data = {}
+	print(os.getcwd())
+	with open('../data.json') as f:
+		company_data = json.loads(f.read())
+
+
 	if True:
+
+
+
 		selected_stock_ticker = 'AAPL'
 
 		# score
@@ -31,8 +44,8 @@ def index():
 		# Feedback
 		feedback = is_positive(score)
 		# Stock price
-		ticker_price = sf.get_live_price("AAPL")
-		return jsonify([score, feedback, ticker_price])
-		return render_template('home/index.html')
+		ticker_price = (sf.get_live_price("AAPL"))
+		datum = [score, feedback, '%.2f' % ticker_price]
+		return render_template('home/index.html', stonks=company_data, data=datum)
 
 

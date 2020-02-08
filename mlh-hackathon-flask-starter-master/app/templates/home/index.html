@@ -11,9 +11,21 @@
         type="search"
         name="q"
         placeholder="Search..."
-        autocomplete="off"
+        autocomplete="on"
       />
       <ul class="search-ac">
+        {% for val in stonks %}
+        <li>
+          <a href="index.html"> 
+            {{ stonks[val] }}
+          <span>
+            {{ val }}
+          </span>
+        </a>
+        </li>
+      {% endfor %}
+      </ul>
+<!--       <ul class="search-ac">
         <li>
           <a href="index.html"
             >Search Result #1<br /><span>Description...</span></a
@@ -28,8 +40,8 @@
           <a href="index.html"
             >Search Result #3<br /><span>Description...</span></a
           >
-        </li>
-        <li><a href="index.html">Search Result #4</a></li>
+        </li> -->
+        <!-- <li><a href="index.html">Search Result #4</a></li> -->
       </ul>
     </form>
   </div>
@@ -49,19 +61,19 @@
           <div class="row">
             <div class="col-sm">
               <p class="lead">
-                Score: 8
+                Score: {{ data[0] }}
               </p>
             </div>
 
             <div class="col-sm">
               <p class="lead">
-                Feedback: Positive
+                Feedback: {{ data[1] }}
               </p>
             </div>
 
             <div class="col-sm">
               <p class="lead">
-                Stock price: $320.03
+                Stock price: ${{ data[2] }}
               </p>
             </div>
           </div>

@@ -1,6 +1,3 @@
-import json
-import sys
-
 
 def fileReader(f):
     # opens file given as argument
@@ -16,8 +13,3 @@ def fileReader(f):
     # creates data.json file in same directory as this file
     with open("data.json", "w") as outfile:
         json.dump(companyPairings, outfile)
-
-
-if __name__ == '__main__':
-    file = open(sys.argv[1], "r")
-    fileReader(file)
