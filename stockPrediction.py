@@ -132,13 +132,14 @@ def SSM(data_set_1, data_set_2) :
 		
 		
 #Testing Area
+"""
 data_set = [(-1, datetime.datetime(2020, 2, 6, 16, 7, 46)),(-1, datetime.datetime(2020, 2, 6, 16, 7, 46)),(-1, datetime.datetime(2020, 2, 6, 16, 7, 46)),(-1, datetime.datetime(2020, 2, 6, 16, 7, 46)),(-1, datetime.datetime(2020, 2, 6, 16, 7, 46)),(-1, datetime.datetime(2020, 2, 6, 16, 7, 46)),(-1, datetime.datetime(2020, 2, 6, 16, 7, 46)),(-1, datetime.datetime(2020, 2, 6, 16, 7, 46)),(-1, datetime.datetime(2020, 2, 6, 16, 7, 46)), (-1, datetime.datetime(2020, 2, 6, 16, 7, 46)),(-1, datetime.datetime(2020, 2, 6, 16, 8, 46)), (-1, datetime.datetime(2020, 2, 3, 16, 7, 43)), (-1, datetime.datetime(2020, 2, 8, 16, 7, 43)), (-1, datetime.datetime(2020, 2, 8, 16, 7, 42)), (-1, datetime.datetime(2020, 2, 8, 16, 7, 41)), (-1, datetime.datetime(2020, 2, 8, 16, 7, 41)), (-1, datetime.datetime(2020, 2, 8, 16, 7, 41))] 
 data_set_1 = [(0.6369, datetime.datetime(2020, 2, 8, 16, 8, 10)), (0.2023, datetime.datetime(2020, 2, 8, 16, 8, 10)), (0.34, datetime.datetime(2020, 2, 8, 16, 8, 9)), (0.5106, datetime.datetime(2020, 2, 8, 16, 8, 9))]
 #print(negative_data(data_set))
 #print(sum_of_x_squared(data_set))
 positive_data_set = positive_data(data_set)
 negative_data_set = negative_data(data_set)
-
+"""
 """
 print("SSM data set against positive data set:")
 print(SSM(data_set,positive_data_set))
@@ -149,7 +150,7 @@ print(SSM(data_set,data_set_1))
 print("mu Value:")
 print(mu_value((0.4413, datetime.datetime(2020, 2, 6, 16, 7, 46)),(1.0000, datetime.datetime(2020, 2, 8, 16, 8, 10))))
 """
-print("forecast: ",forecast_function(data_set_1), "%")
+#print("forecast: ",forecast_function(data_set_1), "%")
 
 #print(mu_value((0.5413, datetime.datetime(2020, 2, 6, 16, 7, 46)),(0.2023, datetime.datetime(2020, 2, 8, 16, 8, 10))))
 
