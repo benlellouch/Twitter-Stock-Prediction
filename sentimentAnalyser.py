@@ -3,7 +3,7 @@ import tweepy
 from tweepy import OAuthHandler
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
-class TwitterFetcher(object):
+class TwitterFetcher:
 
     def __init__(self):
 
@@ -44,7 +44,7 @@ class TwitterFetcher(object):
         except tweepy.TweepError as e:
             print ("Error : " + str(e) )
 
-class SentimentAnalyser(object):
+class SentimentAnalyser:
 
     def __init__(self):
         self.sid = SentimentIntensityAnalyzer()
