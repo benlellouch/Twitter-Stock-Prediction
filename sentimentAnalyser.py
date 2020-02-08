@@ -64,3 +64,20 @@ class SentimentAnalyser:
 
 
         return analysed_tweets
+
+    def average_score(self, analysed_tweets):
+
+        cumsum = 0
+        for tweet in analysed_tweets:
+            cumsum += tweet[0]
+        return (cumsum/len(analysed_tweets))
+
+def main():
+    tf = TwitterFetcher()
+    sa = SentimentAnalyser()
+    tweets = sa.analyse(tf.get_tweets("Google",100))
+    score  = sa.average_score(tweets)
+    print (score)
+
+if __name__ == "__main__":
+    main()
