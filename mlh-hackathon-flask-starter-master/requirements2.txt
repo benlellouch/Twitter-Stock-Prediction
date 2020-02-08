@@ -10,7 +10,7 @@ Click==7.0
 cliff==2.8.2
 cmd2==0.9.8
 colorama==0.4.1
-conda==4.5.11
+
 cryptography==2.3.1
 cssselect==1.1.0
 cycler==0.10.0

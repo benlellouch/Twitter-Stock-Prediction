@@ -1,5 +1,5 @@
 body {
-  background-color: red; }
+  margin: 0; }
 
 .nav-link:hover {
   color: inherit;
@@ -133,3 +133,11 @@ input {
   display: block;
   margin-left: auto;
   margin-right: auto; }
+
+nav {
+  margin-top: 0em;
+  height: 150px; }
+
+.text-white {
+  font-size: 2rem;
+  text-align: center; }
