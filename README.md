@@ -1,3 +1,2 @@
 # HackTheSouth20
-
-##Big Gay
+*Big Gay*
