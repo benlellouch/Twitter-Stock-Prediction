@@ -5,4 +5,5 @@
 
 	Produce values of the predicted stock price based on the sentiment analysis
 """
-class 
+class StockPrediction :
+	
