@@ -1,7 +1,11 @@
 import re
 import tweepy
 from tweepy import OAuthHandler
+import nltk
+nltk.download('vader_lexicon')
+
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
 
 class TwitterFetcher:
 
