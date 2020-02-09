@@ -1,18 +1,14 @@
-### How does it work?
-#### twitter fetcher
-It starts by fetching 100 tweets where a company X is mentioned and formats the tweets into a list of tuples (tweet content, datetime of tweet).
-#### Sentiment Analyser
-The fetched tweets then go into a sentiment analyser which produces of list of tuples (tweet intensity score, datetime of tweet).
-
-
 # White Stock Sentiment Analysis 
 
 We are White Stock, a Hackathon start up team for the Hack the South 2020! We use some Sentiment Analysis, some fancy maths, and some computer magic we provide meaningful information to plan your next move in the market!
 
 We use the general opinion of the public expressed on social media about companies to predict market trends of stocks in the S&P 100 index.
 
-## Getting Started
-Download the files from the github, and run 
+## How does it work?
+### twitter fetcher
+It starts by fetching 100 tweets where a company X is mentioned and formats the tweets into a list of tuples (tweet content, datetime of tweet).
+### Sentiment Analyser
+The fetched tweets then go into a sentiment analyser which produces of list of tuples (tweet intensity score, datetime of tweet).
 
 ### Prerequisites
 
