@@ -1,11 +1,3 @@
-# HackTheSouth20
-
-
-=======
-## Introduction
-Welcome to the WhiteStockPartnership HackTheSouth20 project!
-### What is our project about?
-Our application basically uses social media to try and predict market trends of stocks in the S&P 100 index.
 ### How does it work?
 #### twitter fetcher
 It starts by fetching 100 tweets where a company X is mentioned and formats the tweets into a list of tuples (tweet content, datetime of tweet).
@@ -17,12 +9,13 @@ The fetched tweets then go into a sentiment analyser which produces of list of t
 
 We are White Stock, a Hackathon start up team for the Hack the South 2020! We use some Sentiment Analysis, some fancy maths, and some computer magic we provide meaningful information to plan your next move in the market!
 
+We use the general opinion of the public expressed on social media about companies to predict market trends of stocks in the S&P 100 index.
+
 ## Getting Started
-!!!
 Download the files from the github, and run 
-!!!
+
 ### Prerequisites
-!!!
+
 You will need to have tweepy and nltk 
 ```
 pip3 install tweepy 
@@ -30,10 +23,8 @@ pip3 install tweepy
 ```
 pip3 install nltk 
 ```
-
-!!!
 ### Installing
-!!!
+
 A step by step series of examples that tell you how to get a development env running
 
 Say what the step will be
@@ -49,9 +40,8 @@ until finished
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
-!!!
 ## Running the tests
-!!!
+
 Explain how to run the automated tests for this system
 
 ### Break down into end to end tests
@@ -69,11 +59,6 @@ Explain what these tests test and why
 ```
 Give an example
 ```
-!!!
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
 ## Built With
 
 * [vader](https://github.com/cjhutto/vaderSentiment) - The Sentiment Analysis API used 
