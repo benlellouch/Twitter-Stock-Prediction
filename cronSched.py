@@ -1,15 +1,16 @@
+import time
+from random import randint
+from random import seed
+from random import random
+from plotter import generate_graph
+from stockPrediction import StockPrediction
+from sentimentAnalyser import TwitterFetcher, SentimentAnalyser
 import datetime
 import json
 import nltk
-# nltk.download('vader_lexicon')
-from sentimentAnalyser import TwitterFetcher, SentimentAnalyser
-from stockPrediction import StockPrediction
-from plotter import generate_graph
-from random import random
-from random import seed
-from random import randint
-import time
+nltk.download('vader_lexicon')
 DEBUG = False
+
 
 def querySentiment(f):
     tf = TwitterFetcher()
@@ -19,6 +20,8 @@ def querySentiment(f):
     time_dict = {}
     pred_dict = {}
     # dictionary of acronym : name
+    # jsond = "{\"AAPL\": \"AppleInc.\", \"ABBV\": \"AbbVieInc.\"}"
+    # company_data = json.loads(jsond)
     company_data = json.loads(f.read())
     try:
         with open("date&score-pairs.json", "r") as f:
@@ -36,7 +39,7 @@ def querySentiment(f):
         # gets tweets -> tweets analysed
         analysed = sa.analyse(tf.get_tweets(company_data[k], 100))
         if analysed:
-        # if True:
+            # if True:
             prediction = sp.stonks_bash(analysed)
             if not DEBUG:
                 # average score calculated
@@ -45,8 +48,8 @@ def querySentiment(f):
                 avg = random()
             print(company_data[k])
             # time : {company, average score}
-        time_dict[current_time].append({k:avg})
-        pred_dict[current_time].append({k:prediction})
+        time_dict[current_time].append({k: avg})
+        pred_dict[current_time].append({k: prediction})
     print(time_dict)
     print(pred_dict)
     with open("date&score-pairs.json", "w") as outfile:
@@ -65,12 +68,14 @@ def randomdata(f):
     seed(1)
     dummy_data[current_time] = []
     for k in company_data:
-        value = randint(45,70)
-        dummy_data[current_time].append({k:value})
+        value = randint(45, 70)
+        dummy_data[current_time].append({k: value})
     with open("dummydata.json", "w") as outfile:
         json.dump(dummy_data, outfile)
 
 # funky way of being able to serialize datetime
+
+
 def myconverter(o):
     if isinstance(o, datetime.datetime):
         return o.__str__()
@@ -80,6 +85,7 @@ def myconverter(o):
 def main():
     with open("data.json", "r") as file:
         querySentiment(file)
+
 
 if __name__ == "__main__":
     main()
