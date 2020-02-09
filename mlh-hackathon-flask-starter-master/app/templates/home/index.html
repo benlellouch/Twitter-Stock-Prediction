@@ -6,56 +6,41 @@
 
 <main id="page">
   <div class="container">
-    <form class="search" method="post" action="index.html">
+    <form class="search" method="post" type="submit" autocomplete="off">
       <input
+        id="myInput"
         type="search"
         name="q"
         placeholder="Search..."
-        autocomplete="on"
+        autocomplete="off"
       />
-      <ul class="search-ac">
+      <ul id="search-ac">
         {% for val in stonks %}
-        <li>
-          <a href="index.html"> 
+        <li class="search-value">
+          <a href="index.html">
             {{ stonks[val] }}
-          <span>
-            {{ val }}
-          </span>
-        </a>
+            <span>
+              {{ val }}
+            </span>
+          </a>
         </li>
-      {% endfor %}
+        {% endfor %}
       </ul>
-<!--       <ul class="search-ac">
-        <li>
-          <a href="index.html"
-            >Search Result #1<br /><span>Description...</span></a
-          >
-        </li>
-        <li>
-          <a href="index.html"
-            >Search Result #2<br /><span>Description...</span></a
-          >
-        </li>
-        <li>
-          <a href="index.html"
-            >Search Result #3<br /><span>Description...</span></a
-          >
-        </li> -->
-        <!-- <li><a href="index.html">Search Result #4</a></li> -->
-      </ul>
+      <input type="hidden" id="selected" name="selected" value=""></input>
     </form>
+    <button type="submit">Submit</button>
   </div>
   {% endblock %} {% block content %}
 
   <div class="text-gray-light text-center py-5 my-5">
     <!-- <p class="lead">
-  Edit <code>controllers/</code> to update how to receive and reply to
+  Edit <code>controllers/</code> to update how to receive andmyUL reply to
   requests.
 </p> -->
     <div class="cardcontainer">
       <div class="card" data-clickable="true" data-href="http://google.com">
         <canvas id="lineChart" alt="Card image cap"></canvas>
-        <!-- THIS DIV IS NOT CLICKABLE BUT I WANT IT TO BE -->
+        <!-- THIS DIV IS NOT CLICKABLE BUT I WANT IT TO BE --> <input type="hidden" id="selected" name="selected"></input>
         <div class="card-body">
           <h3 class="card-sub align-middle">Apple Inc</h3>
           <div class="row">
@@ -78,11 +63,58 @@
             </div>
           </div>
         </div>
+
         <!-- END CARD-BODY -->
       </div>
       <!-- END CARD -->
     </div>
   </div>
+
 </main>
+
+<script>
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue, selected;
+  input = document.getElementById("myInput");
+  ul = document.getElementById("search-ac");
+  li = ul.getElementsByClassName("search-value");
+
+  for (j = 0; j < li.length; j++) {
+    li[j].addEventListener("mousedown", function(event) {
+      a =
+        event.target.tagName == "A"
+          ? event.target
+          : event.target.getElementsByTagName("a")[0];
+      console.log(a);
+      txtValue = a.textContent || a.innerText;
+      input.value = txtValue;
+      console.log(input.value);
+      selected = input.value;
+      console.log(selected);
+      $(".search").submit();
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    function myFunction() {
+      filter = input.value.toUpperCase();
+      console.log("called");
+      // Loop through all list items, and hide those who don't match the search query
+      for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        console.log(txtValue);
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          li[i].style.display = "";
+        } else {
+          li[i].style.display = "none";
+        }
+      }
+    }
+
+    input.addEventListener("keyup", myFunction);
+    console.log("loaded");
+  });
+</script>
 
 {% endblock %}

@@ -26,6 +26,7 @@ body {
 
 .container {
   margin: 50px auto;
+  margin-bottom: 20px;
   width: 640px;
 }
 
@@ -37,36 +38,38 @@ input {
 
 .search {
   position: relative;
-  margin: 0 auto;
-  width: 300px;
+  float: left;
+  margin: auto;
+  margin-left: 9.7rem;
+  width: 63%;
 
   input {
-    height: 26px;
+    height: 30px;
     width: 100%;
     padding: 0 12px 0 25px;
-    background: white url("../img/search.png") 8px 6px no-repeat;
+    background: white 8px 6px no-repeat;
     border: 1px solid;
     border-color: #a8acbc #babdcc #c0c3d2;
-    border-radius: 13px;
+    border-radius: 3px;
     -webkit-appearance: textfield;
 
     &:focus {
       outline: 0;
       border-color: #66b1ee;
 
-      + .search-ac {
+      + #search-ac {
         display: block;
       }
     }
   }
 }
 
-.search-ac {
+#search-ac {
   display: none;
   position: absolute;
   top: 35px;
   left: 0;
-  right: 0;
+  right: -10;
   z-index: 10;
   background: #fdfdfd;
   border: 1px solid;
@@ -86,8 +89,8 @@ input {
         width: 0;
         height: 0;
         position: absolute;
-        left: 50%;
-        margin-left: -5px;
+        left: 10%;
+        margin-left: -10px;
         border: 5px outset transparent;
       }
 
@@ -118,7 +121,7 @@ input {
     display: block;
     position: relative;
     margin: 0 -1px;
-    padding: 6px 40px 6px 10px;
+    padding: 6px 6px 6px 10px;
     color: #808394;
     font-weight: 500;
     text-decoration: none;
@@ -138,7 +141,6 @@ input {
       margin-top: -9px;
       width: 18px;
       height: 18px;
-      background: url("../img/arrow.png") 0 0 no-repeat;
     }
 
     &:hover {
@@ -154,8 +156,7 @@ input {
   color: #a7aabc;
   font-weight: 200;
 }
-
-::-webkit-input-placeholder {
+Ameri ::-webkit-input-placeholder {
   color: #a7aabc;
   font-weight: 200;
   line-height: 14px;
@@ -179,6 +180,7 @@ input {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 2rem;
 }
 
 nav {
@@ -189,4 +191,17 @@ nav {
 .text-white {
   font-size: 2rem;
   text-align: center;
+}
+
+button {
+  float: left;
+  height: 30px;
+  margin-top: 0em;
+  width: 9%;
+  background: #2196f3;
+  color: white;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  border-radius: 15px;
+  cursor: pointer;
 }
