@@ -37,17 +37,16 @@ input {
 }
 
 .search {
-  position: relative;
-  float: left;
+  position: absolute;
+
   margin: auto;
-  margin-left: 9.7rem;
-  width: 63%;
+  width: 50rem;
 
   input {
     height: 30px;
     width: 100%;
-    padding: 0 12px 0 25px;
-    background: white 8px 6px no-repeat;
+    padding: 0 12px 0 12px;
+    background: white 8px 8px no-repeat;
     border: 1px solid;
     border-color: #a8acbc #babdcc #c0c3d2;
     border-radius: 3px;

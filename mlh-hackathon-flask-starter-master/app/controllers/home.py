@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import Blueprint, render_template, jsonify, request
 from yahoo_fin import stock_info as sf
+
 import json
 import os
 
@@ -9,40 +10,48 @@ blueprint = Blueprint('home', __name__)
 
 
 def get_score(ticker):
-    if ticker == 'AAPL':
-        return 0.63
+	if ticker == 'AAPL':
+		return 0.63
+	else:
+		return 0.45
 
 
-def is_positive(score):
-    if score > 0:
-        return True
-    else:
-        return False
+
+
+def calculate_accuracy(ticker):
+	with open('../accuracy.json') as f:
+		data = json.loads(f.read())
+	return data[ticker]
 
 
 @blueprint.route('/', methods=['GET', 'POST'])
 def index():
-    # if request.method == 'GET':
-    # 	show = False
+	print('index')
+	selected_stock_ticker = 'AAPL'
 
-    if request.method == 'POST':
-        # 	show = True
-        return jsonify(request.form)
+	if request.method == 'GET':
+		print('GET')
 
-    company_data = {}
-    print(os.getcwd())
-    with open('../data.json') as f:
-        company_data = json.loads(f.read())
+	if request.method == 'POST':
+		print('dasd')
+		ticker = (str(request.form['selected']).strip()[-16::]).strip()
+		print(ticker)
+		selected_stock_ticker = ticker
 
-    if True:
+	company_data = {}
+	selected_data = {}
 
-        selected_stock_ticker = 'AAPL'
 
-        # score
-        score = get_score(selected_stock_ticker)
-        # Feedback
-        feedback = is_positive(score)
-        # Stock price
-        ticker_price = (sf.get_live_price("AAPL"))
-        datum = [score, feedback, '%.2f' % ticker_price]
-        return render_template('home/index.html', stonks=company_data, data=datum)
+	with open('../data.json') as f:
+		company_data = json.loads(f.read())
+
+	selected_data['ticker'] = selected_stock_ticker
+	selected_data['name'] = company_data[selected_stock_ticker]
+	selected_data['price'] = '%.2f' % (sf.get_live_price(selected_stock_ticker))
+	# selected_data['open'] = '%.2f' % (sf.get_open(selected_stock_ticker))
+	selected_data['score'] = get_score(selected_stock_ticker)
+	selected_data['accuracy'] = '%.2f' % calculate_accuracy(selected_stock_ticker)
+	selected_data['tweets'] = ""
+
+
+	return render_template('home/index.html', stonks=company_data, data=selected_data)
