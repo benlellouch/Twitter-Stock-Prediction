@@ -3,6 +3,7 @@ import json
 import nltk
 # nltk.download('vader_lexicon')
 from sentimentAnalyser import TwitterFetcher, SentimentAnalyser
+from plotter import generate_graph
 from random import random
 from random import seed
 from random import randint
@@ -38,6 +39,8 @@ def querySentiment(f):
     print(time_dict)
     with open("date&score-pairs.json", "w") as outfile:
         json.dump(time_dict, outfile)
+    for k in company_data:
+        generate_graph("date&score-pairs.json", k)
 
 
 def randomdata(f):
@@ -61,7 +64,5 @@ def myconverter(o):
 
 # opens json data file
 def main():
-    with open('data.json') as file:
-        randomdata(file)
+    with open("data.json", "r") as file:
         querySentiment(file)
-
