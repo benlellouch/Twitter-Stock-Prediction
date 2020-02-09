@@ -1,9 +1,8 @@
-/* Custom stylesheet */
-
+/* Custom styleshee */
 .nav-link:hover {
   color: inherit;
   text-decoration: none;
-  opacity: .75;
+  opacity: 0.75;
 }
 
 .link-reset:hover {
@@ -14,4 +13,8 @@
 .octicon {
   display: inline-block;
   vertical-align: text-top;
+}
+
+.lead {
+  font-size: 1.5 rem;
 }
