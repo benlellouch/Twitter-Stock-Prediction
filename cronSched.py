@@ -1,15 +1,13 @@
 import datetime
 import json
 import nltk
-nltk.download('vader_lexicon')
+# nltk.download('vader_lexicon')
 from sentimentAnalyser import TwitterFetcher, SentimentAnalyser
 from random import random
 from random import seed
 from random import randint
 import time
-
 DEBUG = False
-
 
 def querySentiment(f):
     tf = TwitterFetcher()
@@ -18,7 +16,6 @@ def querySentiment(f):
     time_dict = {}
     # dictionary of acronym : name
     company_data = json.loads(f.read())
-    print(current_time)
     try:
         with open("date&score-pairs.json", "r") as f:
             time_dict = json.loads(f.read())
@@ -67,3 +64,4 @@ def main():
     with open('data.json') as file:
         randomdata(file)
         querySentiment(file)
+
