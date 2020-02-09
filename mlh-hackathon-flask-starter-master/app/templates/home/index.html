@@ -33,6 +33,9 @@
 </style>
 
 <main id="page">
+  <div class="call-to-action-container">
+    <h1 class="call-to-action-text">Start by searching on the bar below ;-)</h1>
+  </div>
   <div class="container">
     <form class="search" method="post" type="submit" autocomplete="off" style="width: 50rem;">
       <input
@@ -73,13 +76,13 @@
           <div class="row">
             <div class="col-sm">
               <p class="lead" {% if data['score'] <= 0.5 %} style="color: maroon" {% else %} style="color: #009933" {% endif %}>
-                Score: {{ data['score'] }}
+                Score: <br> {{ data['score'] }}
               </p>
             </div>
 
             <div class="col-sm">
               <p class="lead">
-                Accuracy: {{ data['accuracy'] }} %
+                Accuracy:<br> {{ data['accuracy'] }} %
               </p>
             </div>
 
@@ -100,15 +103,20 @@
       </div>
       <!-- END CARD -->
     </div>
-    <div>
-      <br>
-      <h4>What is going on?</h4>
-      <br>
-      <xmp>
-        {{ data['tweets'] }}
-      </xmp>
-      <p
-    </div>
+  </div>
+
+  <div class="explenation-container">
+    <br>
+    <h1 class="explenation-title">What is going on?</h1>
+    <br>
+
+    <p class="explenation-text">
+      Thanks to sentiment analysis, some fancy math and some computer magic we display meaningful information
+      for you to use and plan your next move in the market.
+    </p>
+    <xmp>
+      {{ data['tweets'] }}
+    </xmp>
   </div>
   
 
