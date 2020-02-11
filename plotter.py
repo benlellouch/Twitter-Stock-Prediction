@@ -4,8 +4,6 @@ import json
 
 
 def generate_graph(f, ticker):
-    if not os.path.exists("plots"):
-        os.mkdir("plots")
     x_plot = []
     y_plot = []
     file = open(f, "r").read()
