@@ -59,7 +59,7 @@ Unidecode==1.0.23
 urllib3==1.23
 w3lib==1.21.0
 wcwidth==0.1.7
-websockets==8.1
+websockets==9.1
 Werkzeug==0.15.4
 WTForms==2.2.1
 yahoo-fin==0.8.4
