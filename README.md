@@ -73,7 +73,6 @@ We use [GitHub](http://github.com/) for versioning.
 * **Benjamin Rees** - *Statistical Work and Development of Market Prediction algorithm* - [BenWRees](https://github.com/BenWRees)
 * **Michael Gimson** - *Persistent Data Development* - [MichaelGimson](https://github.com/MichaelGimson)
 * **Jury D'Alessio** - *Principal Front End Developer* - [JuryDAlessio](https://github.com/JuryDAlessio)
-* **Isreal Geniuss** - *Man who chats bollocks on Twitter* - N/A
 
 
 
