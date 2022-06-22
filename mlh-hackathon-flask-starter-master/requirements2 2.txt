@@ -29,7 +29,7 @@ MarkupSafe==1.1.1
 matplotlib==3.1.2
 MechanicalSoup==0.8.0
 multitasking==0.0.9
-numpy==1.16.2
+numpy==1.22.0
 pandas==1.0.1
 parse==1.14.0
 pbr==5.1.2
